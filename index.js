@@ -12,42 +12,42 @@
 // console.log(`It was: [${b}]. Has begin: [${a}]`);
 //
 
-class ClassUser {
-  constructor(name, surname, age, email, isBanned = false) {
-    this._name = name;
-    this._surname = surname;
-    this._age = age;
-    this._email = email;
-    this._isBanned = isBanned;
-  }
-
-  get isBanned() {
-    return this._isBanned;
-  }
-
-  set isBanned(value) {
-    if (typeof value !== 'boolean') {
-      throw typeof TypeError('');
-    }
-    this._isBanned = value;
-  }
-}
-
-class ClassAdmin extends ClassUser {
-  constructor(name, surname, age, email, isBanned = false) {
-    super(name, surname, age, email, isBanned);
-  }
-
-  setUserBan(value) {
-    value.isBanned = true;
-  }
-}
-
-let Vasyl = new ClassUser;
-console.log(Vasyl.isBanned);
-let admin = new ClassAdmin;
-admin.setUserBan(Vasyl);
-console.log(Vasyl.isBanned);
+// class ClassUser {
+//   constructor(name, surname, age, email, isBanned = false) {
+//     this._name = name;
+//     this._surname = surname;
+//     this._age = age;
+//     this._email = email;
+//     this._isBanned = isBanned;
+//   }
+//
+//   get isBanned() {
+//     return this._isBanned;
+//   }
+//
+//   set isBanned(value) {
+//     if (typeof value !== 'boolean') {
+//       throw typeof TypeError('');
+//     }
+//     this._isBanned = value;
+//   }
+// }
+//
+// class ClassAdmin extends ClassUser {
+//   constructor(name, surname, age, email, isBanned = false) {
+//     super(name, surname, age, email, isBanned);
+//   }
+//
+//   setUserBan(value) {
+//     value.isBanned = true;
+//   }
+// }
+//
+// let Vasyl = new ClassUser;
+// console.log(Vasyl.isBanned);
+// let admin = new ClassAdmin;
+// admin.setUserBan(Vasyl);
+// console.log(Vasyl.isBanned);
 
 // class ClassSquirrel {
 //   constructor(name) {
@@ -106,33 +106,117 @@ console.log(Vasyl.isBanned);
 // console.log(squirrelKazka.song());
 // console.log(squirrelKazka.dance());
 
-class ClassFigure{
-  constructor(value) {
-    this._name=value;
+// class ClassFigure{
+//   constructor(value) {
+//     this._name=value;
+//   }
+//   getName(){
+//     return this._name;
+//   }
+//   getArea(){};
+// }
+// class ClassTriangle extends ClassFigure{
+//   constructor(a,b,angle) {
+//     super('Triangle');
+//     this._a=a;
+//     this._b=b;
+//     this._angle=angle;
+//   }
+//   getArea(){
+//     return this._a*this._b*Math.sin(this._angle*Math.PI/180);
+//   };
+// }
+// class ClassBar extends ClassFigure{
+//   constructor(a,b,angle) {
+//     super('Triangle');
+//     this._a=a;
+//     this._b=b;
+//   }
+//   getArea(){return this._a*this._b};
+// }
+// let figTriangle=new ClassTriangle(3,5,90);
+// console.log(`${figTriangle.getName()}'s area is ${figTriangle.getArea()} for (3,5,90)`);
+
+// let a=0 ?? 2;
+// console.log(a);
+// a.I;
+
+// class ClassStack {
+//   constructor() {
+//     this._size = 0;
+//     this.maxSize = 10000;
+//   }
+//
+//   get size() {
+//     return this._size
+//   }
+//
+//   push(value) {
+//     this.[this._size++] = value
+//   }
+//
+//   pop() {
+//     delete this.[this._size--]
+//   }
+//
+//   pick() {
+//     return this.[this._size - 1]
+//   }
+//
+//   get isEmpty() {
+//     return this._size === 0;
+//   }
+// }
+// s=['(',')','(',')',')'];
+
+
+class Stack {
+
+  constructor(maxSize = 10000) {
+    this._size = 0;
+    this._maxSize = maxSize;
   }
-  getName(){
-    return this._name;
+
+  get size() {
+    return this._size;
   }
-  getArea(){};
+
+  push(v) {
+    this[this._size++] = v;
+    if (this._size > this._maxSize) {
+      throw new RangeError( 'Stack overflow' );
+    }
+    return this._size;
+  }
+
+  pop() {
+    if (this.isEmpty) {
+      return;
+    }
+    const value = this[--this._size];
+    delete this[this._size];
+    return value;
+  }
+
+  pick() {
+    if (this.isEmpty) {
+      return;
+    }
+    return this[this._size - 1];
+  }
+
+  get isEmpty() {
+    return this.size === 0;
+  }
 }
-class ClassTriangle extends ClassFigure{
-  constructor(a,b,angle) {
-    super('Triangle');
-    this._a=a;
-    this._b=b;
-    this._angle=angle;
-  }
-  getArea(){
-    return this._a*this._b*Math.sin(this._angle*Math.PI/180);
-  };
+
+const stack = new Stack( 10 );
+const popStack = new Stack( 10 );
+let s='';
+console.log(stack);
+stack.push('(');
+stack.push(')');
+console.log(stack);
+while (!stack.isEmpty){
+  s=stack.pop();
 }
-class ClassBar extends ClassFigure{
-  constructor(a,b,angle) {
-    super('Triangle');
-    this._a=a;
-    this._b=b;
-  }
-  getArea(){return this._a*this._b};
-}
-let figTriangle=new ClassTriangle(3,5,90);
-console.log(`${figTriangle.getName()}'s area is ${figTriangle.getArea()} for (3,5,90)`);
