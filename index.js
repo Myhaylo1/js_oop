@@ -170,53 +170,103 @@
 // s=['(',')','(',')',')'];
 
 
-class Stack {
+/* Парнiсть дужок */
 
-  constructor(maxSize = 10000) {
-    this._size = 0;
-    this._maxSize = maxSize;
-  }
+// class Stack {
+//
+//   constructor(maxSize = 10000) {
+//     this._size = 0;
+//     this._maxSize = maxSize;
+//   }
+//
+//   get size() {
+//     return this._size;
+//   }
+//
+//   push(v) {
+//     this[this._size++] = v;
+//     if (this._size > this._maxSize) {
+//       throw new RangeError( 'Stack overflow' );
+//     }
+//     return this._size;
+//   }
+//
+//   pop() {
+//     if (this.isEmpty) {
+//       return;
+//     }
+//     const value = this[--this._size];
+//     delete this[this._size];
+//     return value;
+//   }
+//
+//   pick() {
+//     if (this.isEmpty) {
+//       return;
+//     }
+//     return this[this._size - 1];
+//   }
+//
+//   get isEmpty() {
+//     return this.size === 0;
+//   }
+// }
+//
+// const stack = new Stack( 10 );
+// let s=' (())';
+// let b=true;
+// console.log(s);
+// for (let ss of s) {
+//   switch (ss) {
+//     case '(': stack.push(ss); break;
+//     case ')': if (!stack.isEmpty) {
+//                 if ('('!==stack.pop()) b=false;
+//               } else b=false;
+//               break;
+//   }
+//   if (!b) break;
+// }
+// if (!stack.isEmpty) b=false;
+// console.log(b);
 
-  get size() {
-    return this._size;
-  }
 
-  push(v) {
-    this[this._size++] = v;
-    if (this._size > this._maxSize) {
-      throw new RangeError( 'Stack overflow' );
-    }
-    return this._size;
-  }
+// let userToMessageMap=new Map();
+// let User1={
+//   name: 'M',
+//   surname: 'Vas',
+//   age: 45
+// }
+// userToMessageMap.set(User1,[
+//   {timestamp: '2020-10-12 11:11', text: 'ПрЮвет ВОЛКУ!!!'},
+//   {timestamp: '2020-10-12 11:11', text: 'ПрЮвет ЗАЙЦУ!!!'},
+// ]);
+// let user1Message=getUserMessagees(User1);
+// function getUserMessagees(user) {
+//   return userToMessageMap.get(user);
+// }
+// console.log(user1Message);
 
-  pop() {
-    if (this.isEmpty) {
-      return;
-    }
-    const value = this[--this._size];
-    delete this[this._size];
-    return value;
-  }
+const vocabulary=new Map();
+vocabulary.set('0','0');
+vocabulary.set('1','I');
+vocabulary.set('2','II');
+vocabulary.set('3','III');
+vocabulary.set('4','IV');
+vocabulary.set('5','V');
+vocabulary.set('6','VI');
+vocabulary.set('7','VII');
 
-  pick() {
-    if (this.isEmpty) {
-      return;
-    }
-    return this[this._size - 1];
-  }
+console.log('7=',vocabulary.get('7'));
+console.log('8=',vocabulary.get('8'));
 
-  get isEmpty() {
-    return this.size === 0;
-  }
+let translate=function(str, separator=' '){
+  return str.split(separator).map(w => vocabulary.get(w));
 }
+console.log( translate('1 2 3 4') );
 
-const stack = new Stack( 10 );
-const popStack = new Stack( 10 );
-let s='';
-console.log(stack);
-stack.push('(');
-stack.push(')');
-console.log(stack);
-while (!stack.isEmpty){
-  s=stack.pop();
-}
+let vocabularyKey=[... vocabulary.keys()];
+let vocabularyValue=[... vocabulary.values()];
+console.log(vocabularyKey);
+console.log(vocabularyValue);
+
+
