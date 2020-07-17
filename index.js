@@ -220,7 +220,7 @@
 //   switch (ss) {
 //     case '(': stack.push(ss); break;
 //     case ')': if (!stack.isEmpty) {
-//                 if ('('!==stack.pop()) b=false;
+//                 if (stack.pop()!=='(') b=false;
 //               } else b=false;
 //               break;
 //   }
@@ -228,6 +228,41 @@
 // }
 // if (!stack.isEmpty) b=false;
 // console.log(b);
+
+// let stack = [];
+// let s=')( ';
+// let b=true;
+// console.log(s);
+// for (let ss of s) {
+//   switch (ss) {
+//     case '(': stack.push(ss); break;
+//     case ')': if (stack.length) {
+//       if (stack[stack.length-1]==='(') stack.pop(); else b=false;
+//     } else b=false;
+//       break;
+//   }
+//   if (!b) break;
+// }
+// if (stack.length) b=false;
+// console.log(b);
+
+// let stack = [];
+// let s='{(()) ';
+// let b=true;
+// console.log(s);
+// for (let ss of s) {
+//   switch (ss) {
+//     case '(': stack[stack.length++]=ss; break;
+//     case ')': if (stack.length) {
+//       if ('('!==stack[stack.length-1]) b=false; else stack.pop();
+//     } else b=false;
+//       break;
+//   }
+//   if (!b) break;
+// }
+// if (stack.length) b=false;
+// console.log(b);
+
 
 
 // let userToMessageMap=new Map();
@@ -246,27 +281,68 @@
 // }
 // console.log(user1Message);
 
-const vocabulary=new Map();
-vocabulary.set('0','0');
-vocabulary.set('1','I');
-vocabulary.set('2','II');
-vocabulary.set('3','III');
-vocabulary.set('4','IV');
-vocabulary.set('5','V');
-vocabulary.set('6','VI');
-vocabulary.set('7','VII');
+// const vocabulary=new Map();
+// vocabulary.set('0','0');
+// vocabulary.set('1','I');
+// vocabulary.set('2','II');
+// vocabulary.set('3','III');
+// vocabulary.set('4','IV');
+// vocabulary.set('5','V');
+// vocabulary.set('6','VI');
+// vocabulary.set('7','VII');
+//
+// console.log('7=',vocabulary.get('7'));
+// console.log('8=',vocabulary.get('8'));
+//
+// let translate=function(str, separator=' '){
+//   return str.split(separator).map(w => vocabulary.get(w));
+// }
+// console.log( translate('1 2 3 4') );
+//
+// let vocabularyKey=[... vocabulary.keys()];
+// let vocabularyValue=[... vocabulary.values()];
+// console.log(vocabularyKey);
+// console.log(vocabularyValue);
 
-console.log('7=',vocabulary.get('7'));
-console.log('8=',vocabulary.get('8'));
+// let map=new Map([['key1','value1'],['key2','value2'],['key3','value3'],['key4','value4']]);
+// let map1=new Map(map.entries());
+// map.set();
+// console.log(map);
+// console.log(map1);
+//
+// let set=new Set();
+// for(let i=0;i<10;i++) {set.add('test')};
+// let user={name:'test'};
+// set.add(user);
+// set.add(user);
+// user.surname='test_new';
+// set.add(user);
+// console.log(set);
+// let set1= new Set(set);
+// console.log(set1);
+// let aa=[1,2,3];
+// let bb=new Array(aa);
+// aa.push(4);
+// console.log(aa);
+// console.log(bb);
 
-let translate=function(str, separator=' '){
-  return str.split(separator).map(w => vocabulary.get(w));
+// let user={
+//   firstName: 'Ivan',
+//   lastName: 'Ivanov'
+// };
+//
+// const {firsName: name, lastName: surname}=user;
+//
+// function getFullName(user){
+//   console.log(user.name)
+// }
+
+let car1={
+  color: 'white',
+  brand: 'VW',
+  engine: {
+    volume: 2
+  }
 }
-console.log( translate('1 2 3 4') );
 
-let vocabularyKey=[... vocabulary.keys()];
-let vocabularyValue=[... vocabulary.values()];
-console.log(vocabularyKey);
-console.log(vocabularyValue);
-
-
+const {engine: {volume} }=car1;
